@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'quiz_screen.dart';
+import 'package:quiz_app/screens/category_selection_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController username = TextEditingController();
+    TextEditingController password = TextEditingController();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -23,16 +25,18 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               TextField(
+                controller: username,
                 decoration: InputDecoration(
-                  labelText: 'Email',
+                  labelText: 'Username',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  prefixIcon: const Icon(Icons.email),
+                  prefixIcon: const Icon(Icons.person),
                 ),
               ),
               const SizedBox(height: 15),
               TextField(
+                controller: password,
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
@@ -45,16 +49,22 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: (){
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx)=> const QuizScreen()));
+                child: OutlinedButton(
+                  onPressed: () {
+                    if (password.text == "pwd123") {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (ctx) => CategorySelectionScreen(name: username.text)));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Invalid password")));
+                    }
                   },
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
+                  // style: ElevatedButton.styleFrom(
+                  //   padding: const EdgeInsets.symmetric(vertical: 15),
+                  //   shape: RoundedRectangleBorder(
+                  //     borderRadius: BorderRadius.circular(10),
+                  //   ),
+                  // ),
                   child: const Text(
                     'Login',
                     style: TextStyle(fontSize: 18),

@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'quiz_screen.dart';
 
 class CategorySelectionScreen extends StatelessWidget {
-  const CategorySelectionScreen({super.key});
+  const CategorySelectionScreen({required this.name, super.key});
+
+  final String name;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Select a Category'),
+        title: Text('Welcome $name!'),
       ),
       body: GridView.count(
         crossAxisCount: 2,
@@ -52,4 +54,3 @@ class CategorySelectionScreen extends StatelessWidget {
     );
   }
 }
-

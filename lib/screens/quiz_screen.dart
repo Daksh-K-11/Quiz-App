@@ -6,6 +6,8 @@ import 'results_screen.dart';
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
 
+  // final String username;
+
   @override
   QuizScreenState createState() => QuizScreenState();
 }
