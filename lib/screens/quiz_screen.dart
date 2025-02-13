@@ -62,7 +62,6 @@ class QuizScreenState extends State<QuizScreen> {
   Widget build(BuildContext context) {
     if (_questions.isEmpty) {
       return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.onPrimary,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
