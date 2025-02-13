@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/screens/category_selection_screen.dart';
+import 'package:quiz_app/screens/quiz_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -53,7 +53,7 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () {
                     if (password.text == "asdf") {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (ctx) => CategorySelectionScreen(name: username.text)));
+                          builder: (ctx) => const QuizScreen()));
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text("Invalid password")));

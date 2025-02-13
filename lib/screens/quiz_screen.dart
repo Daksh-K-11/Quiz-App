@@ -49,8 +49,10 @@ class QuizScreenState extends State<QuizScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) =>
-              ResultsScreen(score: _score, totalQuestions: _questions.length),
+          builder: (context) => ResultsScreen(
+            score: _score,
+            totalQuestions: _questions.length,
+          ),
         ),
       );
     }
@@ -81,21 +83,33 @@ class QuizScreenState extends State<QuizScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple[100],
-        title: Text('Question ${_currentQuestionIndex + 1} of ${_questions.length}'),
+        backgroundColor: const Color.fromARGB(255, 33, 1, 95),
+        foregroundColor: Colors.white,
+        title: Text(
+            'Question ${_currentQuestionIndex + 1} of ${_questions.length}'),
         centerTitle: true,
       ),
       backgroundColor: Theme.of(context).colorScheme.onPrimary,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: QuestionCard(
-              question: currentQuestion,
-              onAnswerSelected: _answerQuestion,
+      body: Container(
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(
+                  255,
+                  78,
+                  13,
+                  151,
+                ),
+                Color.fromARGB(255, 107, 15, 168),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
           ),
-        ],
+        child: QuestionCard(
+          question: currentQuestion,
+          onAnswerSelected: _answerQuestion,
+        ),
       ),
     );
   }

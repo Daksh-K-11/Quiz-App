@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/login_screen.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
 
@@ -18,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Simple Quiz App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        primaryColor: Colors.blue
       ),
       home: const LoginScreen(),
     );

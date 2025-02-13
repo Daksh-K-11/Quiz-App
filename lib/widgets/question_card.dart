@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/question.dart';
+import 'answer_button.dart';
 
 class QuestionCard extends StatelessWidget {
   final Question question;
@@ -16,32 +17,34 @@ class QuestionCard extends StatelessWidget {
     final allAnswers = [...question.incorrectAnswers, question.correctAnswer];
     allAnswers.shuffle();
 
-    return Card(
-      color: Colors.white,
-      margin: const EdgeInsets.all(16),
-      elevation: 8,
-      child: Padding(
-        padding: const EdgeInsets.all(24),
+    return SizedBox(
+      width: double.infinity,
+      child: Container(
+        margin: const EdgeInsets.all(40),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // Styled question text
             Text(
               question.question,
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+              style: const TextStyle(
+                color: Color.fromARGB(255, 201, 153, 251),
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 24),
-            ...allAnswers.map(
-              (answer) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+            const SizedBox(height: 30),
+            ...allAnswers.map((answer) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 10.0),
                 child: AnswerButton(
                   answer: answer,
                   onPressed: () => onAnswerSelected(answer),
                 ),
-              ),
-            ),
+              );
+            }),
           ],
         ),
       ),
@@ -49,31 +52,3 @@ class QuestionCard extends StatelessWidget {
   }
 }
 
-class AnswerButton extends StatelessWidget {
-  final String answer;
-  final VoidCallback onPressed;
-
-  const AnswerButton({
-    super.key,
-    required this.answer,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return FilledButton(
-      onPressed: onPressed,
-      style: FilledButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
-        textStyle: const TextStyle(fontSize: 18),
-      ),
-      child: Text(
-        answer,
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-}
