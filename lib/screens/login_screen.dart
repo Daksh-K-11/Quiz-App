@@ -51,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                 width: double.infinity,
                 child: OutlinedButton(
                   onPressed: () {
-                    if (password.text == "pwd123") {
+                    if (password.text == "asdf") {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (ctx) => CategorySelectionScreen(name: username.text)));
                     } else {
